@@ -43,4 +43,4 @@ while True:	# run the loop forever
 			except:
 				print("Sorry! Currently No Result Is Availaible For this Match!") # if neither of the two is present tell the users about it.
 			print("") # empty string just for sake of cleaner display.
-	sleep(600) # sleep for 1200 secs = 20 mins.		 
+	sleep(1200) # sleep for 1200 secs = 20 mins.		 
