@@ -3,11 +3,12 @@
 ''' You need to install requests and BeautifulSoup before you can use this script on your machine. Read the official documentation for installation : 
 Request - http://docs.python-requests.org/en/master/user/install/
 BeautifulSoup - https://www.crummy.com/software/BeautifulSoup/bs4/doc/ '''
+# You also need to have basic knowledge of regular expressions and how to use them with Python.
 from requests import get
 from bs4 import BeautifulSoup
 from re import compile # re is regular expression module, we will need this to parse one of the HTML tag.
 from time import sleep # sleep is needed to pause the program for ten minutes.
-from os import system # system is needed to clear the screen. Old scores will be wiped from screen and new will be displayed.
+from os import system # system is needed to clear the screen. Old scores will be wiped from the screen and new will be displayed.
 def split_print(string): # this is a utility function to separate team name from its score and print them as in the HTML code they are written without space.
 	for i in range(0,len(string)):
 		if ord(string[i]) >= 48 and ord(string[i]) <= 57: # ord returns the ASCII value of a character.
@@ -16,7 +17,7 @@ def split_print(string): # this is a utility function to separate team name from
 while True:	# run the loop forever
 	print("Wait while the scores are generated.....\n")
 	page = get('http://www.cricbuzz.com') 
-	text = BeautifulSoup(page.text,"html.parser") # text variable 'll be bound to a BS object returned by the BeautifulSoup function
+	text = BeautifulSoup(page.text,"html.parser") # text variable 'll be bound to a BS object returned.
 	List = text.findAll('div',{'ng-if':compile(r'run_active == .+')}) # this is the tag that stores match scores by catagory ex - International.
 	system('cls') # Clear your terminal screen. Note - system('cls') works for Windows, you have to use 'clear' instead of 'cls' on Unix platforms.
 	for element in List:
@@ -29,7 +30,7 @@ while True:	# run the loop forever
 			Match_Title = item.find('a')['title'] # extract the Match Title i.e. : Match - [Match Number] Team A v Team B
 			print("Match - ",number+1,Match_Title,' : ') # print the Match title
 			bat = item.find('div',{'class':'cb-hmscg-bat-txt cb-ovr-flo '}) # The HTML tag with batting statistics
-			bowl = item.find('div',{'class':'cb-hmscg-bwl-txt '}) # The HTML tag with batting statistics
+			bowl = item.find('div',{'class':'cb-hmscg-bwl-txt '}) # The HTML tag with bowling statistics
 			try: # send both batting and bowling statistics(statistics contains team name and score) to split_print function.
 				split_print(bat.get_text())
 				split_print(bowl.get_text())
