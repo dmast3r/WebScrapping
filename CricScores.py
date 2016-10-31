@@ -1,13 +1,13 @@
 # Fetches Live Cricket Scores from Cricbuzz after every 20 mins.
 # This script is written in Python 3
 ''' You need to install requests and BeautifulSoup before you can use this script on your machine. Read the official documentation for installation : 
-Request - http://docs.python-requests.org/en/master/user/install/
+Requests - http://docs.python-requests.org/en/master/user/install/
 BeautifulSoup - https://www.crummy.com/software/BeautifulSoup/bs4/doc/ '''
 # You also need to have basic knowledge of regular expressions and how to use them with Python.
 from requests import get
 from bs4 import BeautifulSoup
 from re import compile # re is regular expression module, we will need this to parse one of the HTML tag.
-from time import sleep # sleep is needed to pause the program for ten minutes.
+from time import sleep # sleep is needed to pause the program for twenty minutes.
 from os import system # system is needed to clear the screen. Old scores will be wiped from the screen and new will be displayed.
 def split_print(string): # this is a utility function to separate team name from its score and print them as in the HTML code they are written without space.
 	for i in range(0,len(string)):
